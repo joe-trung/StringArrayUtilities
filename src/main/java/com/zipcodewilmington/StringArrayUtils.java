@@ -90,7 +90,31 @@ public class StringArrayUtils {
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-        return false;
+//        String test = "";
+//        for (int i = 0; i<array.length;i++) {
+//            test = test + array[i];
+//        }
+//        String[] alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+//        int j=0;
+//        for (int i =0; i < alphabet.length; i++) {
+//            if (test.contains(alphabet[i])){
+//                j++;
+//            }
+//        }
+//        if (j==52) {return true;} else {return false;}
+//    }
+
+        String lowerCase = "abcdefghijklmnopqrstuvwxyz";
+        String upperCase = "";
+            for(String element : array) {
+            upperCase += element.toLowerCase();
+        }
+                for(char c : lowerCase.toCharArray()){
+            if(upperCase.indexOf(c) == -1){
+                return false;
+            }
+        }
+            return true;
     }
 
     /**
@@ -112,14 +136,20 @@ public class StringArrayUtils {
      * @return array with identical contents excluding values of `value`
      */ // TODO
     public static String[] removeValue(String[] array, String valueToRemove) {
-        String[] remArray = new String[array.length-1];
-        for(int i=0, j=0; i< array.length; i++) {
-            if (!(array[i].equals(valueToRemove))) {
-                remArray[j] = array[i];
-                j++;
-            }
-        }
+        List<String> list = new ArrayList<>(Arrays.asList(array));
+        list.remove(valueToRemove);
+        String[] remArray = list.toArray(new String[list.size()]);
         return remArray;
+
+// THIS PASSED THE TEST< BUT ONLY IF ONE MATCH
+//        String[] remArray = new String[array.length-1];
+//        for(int i=0, j=0; i< array.length; i++) {
+//            if (!(array[i].equals(valueToRemove))) {
+//                remArray[j] = array[i];
+//                j++;
+//            }
+//        }
+//        return remArray;
 
     }
 
@@ -128,28 +158,30 @@ public class StringArrayUtils {
      * @return array of Strings with consecutive duplicates removes
      */ // TODO
     public static String[] removeConsecutiveDuplicates(String[] array) {
-
-        return null;
+        List<String> list = new ArrayList<>(Arrays.asList(array));
+        for(int i= 0; i < list.size() - 1; i++) {
+            if (list.get(i).equals(list.get(i + 1))){
+                list.remove(i);
+                i--;
+            }
+        }
+        return list.toArray(new String[list.size()]);
     }
+
 
     /**
      * @param array array of chars
      * @return array of Strings with each consecutive duplicate occurrence concatenated as a single string in an array of Strings
      */ // TODO
     public static String[] packConsecutiveDuplicates(String[] array) {
-        List<String> list = Arrays.asList(array);
-        int j = array.length;
-        for (int i = 0; i < (array.length) - 1; i++) {
-            if (!(array[i].equals(array[i + 1]))) {
-                list.remove(array[i+1]);
-                j = j -1;
+        List<String> list = new ArrayList<>(Arrays.asList(array));
+        for(int i= 0; i < list.size() - 1; i++) {
+            if (list.get(i).equals(list.get(i + 1))){
+                list.remove(i);
             }
+
         }
-        String[] packArray = new String[j];
-        for (int i =0;i<j;i++) {
-            packArray[i]=list.get(i);
-        }
-        return packArray;
+        return list.toArray(new String[list.size()]);
     }
 
 
