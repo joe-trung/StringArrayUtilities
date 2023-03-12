@@ -77,46 +77,54 @@ public class StringArrayUtils {
      * @return true if the order of the array is the same backwards and forwards
      */ // TODO
     public static boolean isPalindromic(String[] array) {
-        int j=0;
-        int i;
-        for (i=0; i< (int) array.length/2;i++) {
-            if (array[i].equals(array[array.length-1-i])) {j+=1;}
-        }
-        if (i==j) { return true;} else {return false;}
+        if (Arrays.toString(array).equals(Arrays.toString(reverse(array)))){
+            return true;
+        } else{
+            return false;}
     }
+
+//        int j=0;
+//        int i;
+//        for (i=0; i< (int) array.length/2;i++) {
+//            if (array[i].equals(array[array.length-1-i])) {j+=1;}
+//        }
+//        if (i==j) { return true;} else {return false;}
+//    }
 
     /**
      * @param array array of String objects
      * @return true if each letter in the alphabet has been used in the array
      */ // TODO
     public static boolean isPangramic(String[] array) {
-//        String test = "";
-//        for (int i = 0; i<array.length;i++) {
-//            test = test + array[i];
-//        }
-//        String[] alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-//        int j=0;
-//        for (int i =0; i < alphabet.length; i++) {
-//            if (test.contains(alphabet[i])){
-//                j++;
-//            }
-//        }
-//        if (j==52) {return true;} else {return false;}
-//    }
-
-        String lowerCase = "abcdefghijklmnopqrstuvwxyz";
-        String upperCase = "";
-            for(String element : array) {
-            upperCase += element.toLowerCase();
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        String checkString = "";
+        for(String element : array) {
+            checkString += element.toLowerCase();
         }
-                for(char c : lowerCase.toCharArray()){
-            if(upperCase.indexOf(c) == -1){
+        for(char single : alphabet.toCharArray()){
+            if(checkString.indexOf(single) == -1){
                 return false;
             }
         }
             return true;
     }
 
+//    String alphabet = "abcdefghijklmnopqrstuvwxyz";
+//        for(String arr : array){
+//        String[] words = arr.toLowerCase().split("");
+//        for(String character : words){
+//            if(alphabet.contains(character)){
+//                //remove char from alphabet
+//                alphabet = alphabet.replace(character,"");
+//            }
+//        }
+//    }
+//    //if all characters were used, length will be 0
+//        if(alphabet.length()==0){
+//        return true;
+//    }
+//        return false;
+//}
     /**
      * @param array array of String objects
      * @param value value to check array for
