@@ -85,7 +85,7 @@ public class StringArrayUtils {
 
 //        int j=0;
 //        int i;
-//        for (i=0; i< (int) array.length/2;i++) {
+//        for (i=0; i< (int) array.length;i++) {
 //            if (array[i].equals(array[array.length-1-i])) {j+=1;}
 //        }
 //        if (i==j) { return true;} else {return false;}
@@ -148,6 +148,8 @@ public class StringArrayUtils {
         list.remove(valueToRemove);
         String[] remArray = list.toArray(new String[list.size()]);
         return remArray;
+
+
 
 // THIS PASSED THE TEST< BUT ONLY IF ONE MATCH
 //        String[] remArray = new String[array.length-1];
